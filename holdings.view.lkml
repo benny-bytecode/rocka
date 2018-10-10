@@ -11,10 +11,10 @@ view: holdings {
     sql: ${TABLE}."Account Value" ;;
   }
 
-  dimension: as_of_date {
-    type: string
-    sql: ${TABLE}."As Of Date" ;;
-    # sql: REPLACE(${TABLE}."As Of Date",'/ ','-') ;;
+  dimension_group: as_of {
+    type: time
+    # sql: ${TABLE}."As Of Date" ;;
+    sql: to_date(LEFT(${TABLE}."As Of Date", CHARINDEX(' ', ${TABLE}."As Of Date")-1), 'MM/DD/YYYY') ;;
   }
 
   dimension: asset_class {
@@ -48,10 +48,10 @@ view: holdings {
     sql: ${TABLE}."Custodian Init" ;;
   }
 
-  dimension: holding_date {
-    type: string
-    sql: ${TABLE}."Holding Date" ;;
-    # sql: REPLACE(${TABLE}."Holding Date",'/ ','-') ;;
+  dimension_group: holding {
+    type: time
+    # sql: ${TABLE}."Holding Date" ;;
+    sql: to_date(LEFT(${TABLE}."Holding Date", CHARINDEX(' ', ${TABLE}."Holding Date")-1), 'MM/DD/YYYY') ;;
   }
 
   dimension: industry {
@@ -147,5 +147,11 @@ view: holdings {
   measure: count {
     type: count
     drill_fields: [security_name]
+  }
+
+  measure: total_market_value_usd {
+    type: sum
+    sql: ${market_value_usd} ;;
+    value_format_name: usd
   }
 }
