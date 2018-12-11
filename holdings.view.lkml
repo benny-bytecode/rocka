@@ -62,36 +62,43 @@ view: holdings {
   dimension: industry_level_1 {
     type: string
     sql: ${TABLE}."Industry Level 1" ;;
+    drill_fields: [industry_level_2]
   }
 
   dimension: industry_level_2 {
     type: string
     sql: ${TABLE}."Industry Level 2" ;;
+    drill_fields: [industry_level_3]
   }
 
   dimension: industry_level_3 {
     type: string
     sql: ${TABLE}."Industry Level 3" ;;
+    drill_fields: [industry_level_4]
   }
 
   dimension: industry_level_4 {
     type: string
     sql: ${TABLE}."Industry Level 4" ;;
+    drill_fields: [industry_level_5]
   }
 
   dimension: industry_level_5 {
     type: string
     sql: ${TABLE}."Industry Level 5" ;;
+    drill_fields: [industry_level_6]
   }
 
   dimension: industry_level_6 {
     type: string
     sql: ${TABLE}."Industry Level 6" ;;
+    drill_fields: [industry_level_7]
   }
 
   dimension: industry_level_7 {
     type: string
     sql: ${TABLE}."Industry Level 7" ;;
+    drill_fields: [industry_level_8]
   }
 
   dimension: industry_level_8 {
